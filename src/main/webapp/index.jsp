@@ -1,5 +1,8 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <body>
-<h2>Hello World!dgdfgdfg</h2>
+<h2>Hello World </h2>
+<jsp:forward page="/Controller"/>
+
 </body>
 </html>
