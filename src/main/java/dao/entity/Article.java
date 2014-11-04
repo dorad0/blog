@@ -2,6 +2,7 @@ package dao.entity;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 
 /**
@@ -12,9 +13,11 @@ import java.util.Date;
 public class Article {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @Column(name = "ARTICLE_ID")
+    private Long id;
 
     @ManyToOne
+    @JoinColumn(name = "USER_ID")
     private User user;
 
     @Column(name = "TITLE", unique = true, nullable = false)
@@ -26,41 +29,26 @@ public class Article {
     @Column(name = "PUBLICATIONDATE")
     private Date publicationDate;
 
-//    @OneToMany
-//    private List<Comment> comments;
-
-    public Article(User user, String title, String data, Date publicationDate) {
-        this.user = user;
-        this.title = title;
-        this.data = data;
-        this.publicationDate = publicationDate;
-//        this.comments = new ArrayList<>();
-    }
+    @OneToMany
+    @JoinColumn(name = "COMMENT_ID")
+    private Set<Comment> comments;
 
     public Article() {
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
+    public Article(User user, String title, String data, Date publicationDate, Set<Comment> comments) {
+        this.user = user;
         this.title = title;
+        this.data = data;
+        this.publicationDate = publicationDate;
+        this.comments = comments;
     }
 
-//    public List<Comment> getComments() {
-//        return comments;
-//    }
-//
-//    public void setComments(List<Comment> comments) {
-//        this.comments = comments;
-//    }
-
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -72,12 +60,12 @@ public class Article {
         this.user = user;
     }
 
-    public Date getPublicationDate() {
-        return publicationDate;
+    public String getTitle() {
+        return title;
     }
 
-    public void setPublicationDate(Date publicationDate) {
-        this.publicationDate = publicationDate;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getData() {
@@ -88,14 +76,31 @@ public class Article {
         this.data = data;
     }
 
+    public Date getPublicationDate() {
+        return publicationDate;
+    }
+
+    public void setPublicationDate(Date publicationDate) {
+        this.publicationDate = publicationDate;
+    }
+
+    public Set<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(Set<Comment> comments) {
+        this.comments = comments;
+    }
+
     @Override
     public String toString() {
         return "Article{" +
-                "publicationDate=" + publicationDate +
-                ", id=" + id +
+                "id=" + id +
                 ", user=" + user +
                 ", title='" + title + '\'' +
-                ", article='" + data + '\'' +
+                ", data='" + data + '\'' +
+                ", publicationDate=" + publicationDate +
+                ", comments=" + comments +
                 '}';
     }
 }

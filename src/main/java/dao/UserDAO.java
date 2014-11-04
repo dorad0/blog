@@ -8,6 +8,6 @@ import dao.entity.User;
  */
 public interface UserDAO {
     public void addUser(User user);
-    public void removeUeser(User user);
+    public void deleteUser(User user);
     public User getUser(String name);
 }

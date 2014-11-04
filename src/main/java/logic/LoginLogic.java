@@ -21,4 +21,9 @@ public class LoginLogic {
 //        return ADMIN_LOGIN.equals(enterLogin) &&
 //                ADMIN_PASS.equals(enterPass);
     }
+
+    public static boolean checkAdminStatus(String userName) {
+        User user = Factory.getInstance().getUserDAO().getUser(userName);
+        return user.getUserRole().equals("admin");
+    }
 }

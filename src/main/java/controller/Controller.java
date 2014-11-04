@@ -46,7 +46,7 @@ public class Controller extends HttpServlet {
 // вызов страницы ответа на запрос
             dispatcher.forward(req, resp);
         } else {
-            req.getRequestDispatcher("/jsp/login.jsp").forward(req, resp);
+            req.getRequestDispatcher(page).forward(req, resp);
 //установка страницы c cообщением об ошибке
             page = ConfigurationManager.getProperty("path.page.index");
             req.getSession().setAttribute("nullPage",

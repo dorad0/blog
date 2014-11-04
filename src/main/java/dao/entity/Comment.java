@@ -10,16 +10,19 @@ import java.util.Date;
 @Table(name = "COMMENT")
 public class Comment {
     @Id
-    @GeneratedValue
-    private int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "COMMENT_ID")
+    private Long id;
 
     @Column(name = "PUBLICATIONDATE", nullable = false)
     private Date publicationDate;
 
     @ManyToOne
+    @JoinColumn(name = "USER_ID")
     private User user;
 
     @ManyToOne
+    @JoinColumn(name = "ARTICLE_ID")
     private Article article;
 
     @Column(name = "COMMENTDATA", nullable = false)
@@ -35,11 +38,11 @@ public class Comment {
         this.commentData = commentData;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

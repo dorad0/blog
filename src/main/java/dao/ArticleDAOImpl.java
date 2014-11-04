@@ -2,6 +2,7 @@ package dao;
 
 
 import dao.entity.Article;
+import dao.entity.User;
 import dao.util.HibernateUtil;
 import org.hibernate.Session;
 
@@ -21,9 +22,12 @@ public class ArticleDAOImpl implements ArticleDAO {
     }
 
     @Override
-    public void removeArticle() {
-
+    public void deleteArticles(User user) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        //session.
     }
+
 
     @Override
     public List<Article> getArticles() {

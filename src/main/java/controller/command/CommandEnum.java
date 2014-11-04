@@ -18,6 +18,11 @@ public enum CommandEnum {
         {
             this.command = new LogoutCommand();
         }
+    },
+    DELETEUSER {
+        {
+            this.command = new DeleteUserCommand();
+        }
     };
     ActionCommand command;
     public ActionCommand getCurrentCommand() {

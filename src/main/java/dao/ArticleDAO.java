@@ -2,6 +2,7 @@ package dao;
 
 
 import dao.entity.Article;
+import dao.entity.User;
 
 import java.util.List;
 
@@ -10,6 +11,6 @@ import java.util.List;
  */
 public interface ArticleDAO {
     public void addArticle(Article article);
-    public void removeArticle();
+    public void deleteArticles(User user);
     public List<Article> getArticles();
 }

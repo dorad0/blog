@@ -20,19 +20,20 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public void removeUeser(User user) {
+    public void deleteUser(User user) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
-        session.save(user);
+        session.delete(user);
         session.getTransaction().commit();
         session.close();
     }
 
     @Override
     public User getUser(String name) {
+        User user = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
-        User user = (User) session.createCriteria(User.class).add(Expression.like("name", name)).uniqueResult();
+        user = (User) session.createCriteria(User.class).add(Expression.like("name", name)).uniqueResult();
         session.getTransaction().commit();
         session.close();
         return user;
