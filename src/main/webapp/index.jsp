@@ -2,7 +2,6 @@
 <html>
 <body>
 <h2>Hello World </h2>
-<jsp:forward page="/Controller"/>
-
+    <jsp:forward page="/Controller"/>
 </body>
 </html>
