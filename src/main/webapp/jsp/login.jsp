@@ -10,6 +10,7 @@
 <html>
 <head>
     <title>Login page</title>
+    <link rel="stylesheet" href="../css/style.css"/>
 </head>
 <body>
 
@@ -27,10 +28,11 @@
     <br/>
     ${nullPage}
     <br/>
+    <c:out value=""/>
     <input type="submit" value="Log in"/>
 </form>
-<form name="join" action="/register.jsp">
-    <input type="hidden" name="command" value="register">
+<form name="join" action="/Controller" method="post">
+    <input type="hidden" name="command" value="REGISTERPAGE">
     <input type="submit" value="Join"/>
 </form>
 </body>

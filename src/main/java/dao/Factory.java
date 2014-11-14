@@ -8,6 +8,7 @@ public class Factory {
 
     private static UserDAO userDAO = null;
     private static ArticleDAO articleDAO = null;
+    private static CommentDAO commentDAO = null;
     private static Factory instance = null;
 
     public static synchronized Factory getInstance() {
@@ -29,5 +30,12 @@ public class Factory {
             articleDAO = new ArticleDAOImpl();
         }
         return articleDAO;
+    }
+
+    public CommentDAO getCommentDAO() {
+        if (commentDAO == null) {
+            commentDAO = new CommentDAOImpl();
+        }
+        return commentDAO;
     }
 }

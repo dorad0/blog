@@ -4,7 +4,9 @@ package dao;
 import dao.entity.Article;
 import dao.entity.User;
 import dao.util.HibernateUtil;
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
+import org.hibernate.criterion.Expression;
 
 import java.util.List;
 
@@ -22,10 +24,34 @@ public class ArticleDAOImpl implements ArticleDAO {
     }
 
     @Override
-    public void deleteArticles(User user) {
+    public Article getArticle(String title) {
+        Article article = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
-        //session.
+        article = (Article) session.createSQLQuery("SELECT * FROM article  WHERE title = " +"'" +title +"'").addEntity(Article.class).uniqueResult();
+        session.getTransaction().commit();
+        session.close();
+        return article;
+    }
+
+    @Override
+    public Article getArticleById(Long id) {
+        Article article = null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        article = (Article) session.get(Article.class, id);
+        session.getTransaction().commit();
+        session.close();
+        return article;
+    }
+
+    @Override
+    public void deleteArticle(Article article) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        session.delete(article);
+        session.getTransaction().commit();
+        session.close();
     }
 
 
@@ -34,7 +60,7 @@ public class ArticleDAOImpl implements ArticleDAO {
         List<Article> articles = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
-        articles = session.createCriteria(Article.class).list();
+        articles = session.createSQLQuery("SELECT * FROM ARTICLE").addEntity(Article.class).list();
         session.getTransaction().commit();
         session.close();
         return articles;

@@ -1,5 +1,8 @@
 package dao.entity;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.Set;
@@ -17,7 +20,8 @@ public class Article {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "USER_ID")
+    @JoinColumn(name ="USER_ID")
+//    @Cascade({CascadeType.DELETE})
     private User user;
 
     @Column(name = "TITLE", unique = true, nullable = false)
@@ -29,19 +33,19 @@ public class Article {
     @Column(name = "PUBLICATIONDATE")
     private Date publicationDate;
 
-    @OneToMany
-    @JoinColumn(name = "COMMENT_ID")
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "ARTICLE_ID")
+    @Cascade({CascadeType.ALL})
     private Set<Comment> comments;
 
     public Article() {
     }
 
-    public Article(User user, String title, String data, Date publicationDate, Set<Comment> comments) {
+    public Article(User user, String title, String data, Date publicationDate) {
         this.user = user;
         this.title = title;
         this.data = data;
         this.publicationDate = publicationDate;
-        this.comments = comments;
     }
 
     public Long getId() {
@@ -90,17 +94,5 @@ public class Article {
 
     public void setComments(Set<Comment> comments) {
         this.comments = comments;
-    }
-
-    @Override
-    public String toString() {
-        return "Article{" +
-                "id=" + id +
-                ", user=" + user +
-                ", title='" + title + '\'' +
-                ", data='" + data + '\'' +
-                ", publicationDate=" + publicationDate +
-                ", comments=" + comments +
-                '}';
     }
 }

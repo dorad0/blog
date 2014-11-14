@@ -9,9 +9,25 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-    <title></title>
+    <title>Register page</title>
+    <link rel="stylesheet" href="../css/style.css"/>
 </head>
 <body>
-
+<form name="registerForm" action="/Controller" method="post">
+    <input type="hidden" name="command" value="REGISTER"/>
+    Name:<br>
+    <input type="text" name="userName"/>
+    <br>
+    Password:<br>
+    <input type="password" name="password"/>
+    <br>
+    ${errorRegisterMessage}
+    <br/>
+    ${wrongAction}
+    <br/>
+    ${nullPage}
+    <br/>
+    <input type="submit" value="Register"/>
+</form>
 </body>
 </html>

@@ -9,11 +9,6 @@ public enum CommandEnum {
             this.command = new LoginCommand();
         }
     },
-    MAINPAGE {
-        {
-            this.command = new MainPageCommand();
-        }
-    },
     LOGOUT {
         {
             this.command = new LogoutCommand();
@@ -23,7 +18,39 @@ public enum CommandEnum {
         {
             this.command = new DeleteUserCommand();
         }
+    },
+    DELETEARTICLE {
+        {
+            this.command = new DeleteArticleCommand();
+        }
+    },
+    REGISTER {
+        {
+            this.command = new RegisterCommand();
+        }
+    },
+    REGISTERPAGE {
+        {
+            this.command = new RegisterPageCommand();
+        }
+    },
+    ADDCOMMENT {
+        {
+            this.command = new AddCommentCommand();
+        }
+
+    },
+    ADDARTICLE {
+        {
+            this.command = new AddArticleCommand();
+        }
+    },
+    SAVEARTICLE {
+        {
+            this.command = new SaveArticleCommand();
+        }
     };
+
     ActionCommand command;
     public ActionCommand getCurrentCommand() {
         return command;

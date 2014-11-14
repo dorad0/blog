@@ -11,6 +11,8 @@ import java.util.List;
  */
 public interface ArticleDAO {
     public void addArticle(Article article);
-    public void deleteArticles(User user);
+    public Article getArticle(String title);
+    public void deleteArticle(Article article);
+    public Article getArticleById(Long id);
     public List<Article> getArticles();
 }

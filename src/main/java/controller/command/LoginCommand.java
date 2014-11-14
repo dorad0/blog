@@ -23,11 +23,11 @@ public class LoginCommand implements ActionCommand {
             if (LoginLogic.checkAdminStatus(login)) {
                 page = "/jsp/admin.jsp";
             } else {
-                request.setAttribute("user", login);
+                request.setAttribute("userName", login);
                 //   request.setAttribute("lst", new ArticleDAOImpl().getArticles());
 // определение пути к main.jsp
 //            page = ConfigurationManager.getProperty("path.page.main");
-                page = ConfigurationManager.getProperty("path.page.admin");
+                page = ConfigurationManager.getProperty("path.page.articles");
             }
         } else {
             request.setAttribute("errorLoginPassMessage",

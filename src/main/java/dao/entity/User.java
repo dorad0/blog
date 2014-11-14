@@ -1,7 +1,14 @@
 package dao.entity;
+
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
+
+
 import javax.persistence.*;
-import java.util.List;
 import java.util.Set;
+
+
 
 /**
  * Created by user on 28.09.2014.
@@ -23,23 +30,23 @@ public class User {
     @Column(name = "ROLE", nullable = false)
     private String userRole;
 
-    @OneToMany
-    @JoinColumn(name = "COMMENT_ID")
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "USER_ID")
+    @Cascade({CascadeType.ALL})
     private Set<Comment> comments;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
+    @Cascade({CascadeType.ALL})
     @JoinColumn(name = "ARTICLE_ID")
     private Set<Article> articles;
 
     public User() {
     }
 
-    public User(String name, String password, String userRole, Set<Comment> comments, Set<Article> articles) {
+    public User(String name, String password, String userRole) {
         this.name = name;
         this.password = password;
         this.userRole = userRole;
-        this.comments = comments;
-        this.articles = articles;
     }
 
     public Long getId() {

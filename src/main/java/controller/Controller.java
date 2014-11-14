@@ -39,7 +39,6 @@ public class Controller extends HttpServlet {
 */
         page = command.execute(req);
 // метод возвращает страницу ответа
-// page= null; // поэксперементировать!
         if (page != null) {
             RequestDispatcher dispatcher =
                     getServletContext().getRequestDispatcher(page);
@@ -48,7 +47,7 @@ public class Controller extends HttpServlet {
         } else {
             req.getRequestDispatcher(page).forward(req, resp);
 //установка страницы c cообщением об ошибке
-            page = ConfigurationManager.getProperty("path.page.index");
+            page = ConfigurationManager.getProperty("path.page.login");
             req.getSession().setAttribute("nullPage",
                     MessageManager.getProperty("message.nullpage"));
             resp.sendRedirect(req.getContextPath() + page);
